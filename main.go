@@ -7,9 +7,9 @@ import (
 	"strconv"
 )
 
-func unusedFn_with_looooooooong_name_and_empty_return() {
-	return
-}
+// func unusedFn_with_looooooooong_name_and_empty_return() {
+// 	return
+// }
 
 func main() {
 
