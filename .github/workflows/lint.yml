@@ -1,6 +1,13 @@
 name: lint
 on:
-  - pull_request
+  push:
+    
+  pull_request:
+    tags:
+      - v*
+    branches:
+      - main
+      - master
 
 
 
