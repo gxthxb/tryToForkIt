@@ -1,0 +1,41 @@
+name: lint
+on:
+  push:
+    
+  pull_request:
+    tags:
+      - v*
+    branches:
+      - main
+      - master
+
+
+
+permissions:
+  contents: read
+jobs:
+  
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: 
+        go: [ '1.17']
+
+    name: Go ${{ matrix.go }} sample
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go }}
+      - run: go run main.go
+      - run: go test
+
+  golangci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.29
